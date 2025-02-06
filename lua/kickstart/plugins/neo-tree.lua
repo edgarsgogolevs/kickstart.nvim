@@ -11,13 +11,39 @@ return {
   },
   cmd = 'Neotree',
   keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<leader>e', ':Neotree toggle float reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
   opts = {
+    enable_git_status = true,
+    enable_modified_markers = true,
+    sort_case_insensitive = true,
+    window = {
+      mappings = {
+        ['l'] = 'open',
+        ['h'] = 'close_node',
+      },
+      popup = {
+        border = {
+          style = 'single',
+          highlight = 'FloatBorder',
+        },
+        size = {
+          width = '80%',
+          height = '80%',
+        },
+      },
+    },
     filesystem = {
-      window = {
-        mappings = {
-          ['\\'] = 'close_window',
+      use_libuv_file_watcher = true,
+      filtered_items = {
+        hide_dotfiles = false,
+        hide_gitignored = true,
+        hide_by_name = {
+          'node_modules',
+        },
+        never_show = {
+          '.DS_Store',
+          'thumbs.db',
         },
       },
     },
