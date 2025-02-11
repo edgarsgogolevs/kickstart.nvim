@@ -1,8 +1,5 @@
 -- Neo-tree is a Neovim plugin to browse the file system
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
--- TODO: keybinds for document_symbols + symbols on the right
--- TODO: fix the initial thing
-
 return {
   'nvim-neo-tree/neo-tree.nvim',
   version = '*',

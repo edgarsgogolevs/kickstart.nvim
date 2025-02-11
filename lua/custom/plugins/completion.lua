@@ -39,6 +39,8 @@ return { -- Autocompletion
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
     luasnip.config.setup {}
+    local lua_loader = require 'luasnip.loaders.from_lua'
+    lua_loader.load { paths = {'~/.config/nvim/lua/custom/snippets'} }
 
     cmp.setup {
       snippet = {
