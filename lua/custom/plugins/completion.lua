@@ -33,6 +33,9 @@ return { -- Autocompletion
     --  into multiple repos for maintenance purposes.
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
+    'hrsh7th/cmp-buffer',
+    'Jezda1337/nvim-html-css',
+    'ray-x/cmp-sql',
   },
   config = function()
     -- See `:help cmp`
@@ -40,13 +43,22 @@ return { -- Autocompletion
     local luasnip = require 'luasnip'
     luasnip.config.setup {}
     local lua_loader = require 'luasnip.loaders.from_lua'
-    lua_loader.load { paths = {'~/.config/nvim/lua/custom/snippets'} }
+    lua_loader.load { paths = { '~/.config/nvim/lua/custom/snippets' } }
 
     cmp.setup {
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
+      },
+      window = {
+        completion = {
+          border = 'rounded',
+          -- winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
+        },
+        documentation = {
+          border = 'rounded',
+        },
       },
       completion = { completeopt = 'menu,menuone,noinsert' },
 
@@ -102,6 +114,32 @@ return { -- Autocompletion
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
+        { name = 'buffer' },
+        { name = 'sql' },
+        {
+          name = 'html-css',
+          option = {
+            enable_on = { 'html', 'vue' }, -- html is enabled by default
+            notify = false,
+            documentation = {
+              auto_show = true, -- show documentation on select
+            },
+            formatting = {
+              format = function(entry, vim_item)
+                local source = entry.source.name
+                if source == 'html-css' then
+                  vim_item.menu = '[' .. entry.completion_item.provider .. ']' or '[html-css]'
+                end
+                return vim_item
+              end,
+            },
+            -- add any external scss like one below
+            -- style_sheets = {
+            --   'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css',
+            --   'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css',
+            -- },
+          },
+        },
       },
     }
   end,

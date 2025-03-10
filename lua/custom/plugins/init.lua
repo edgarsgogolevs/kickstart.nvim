@@ -2,22 +2,25 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
+vim.opt.tabstop = 4       -- Number of spaces a tab counts for
+vim.opt.softtabstop = 2   -- Number of spaces when hitting <Tab>
+vim.opt.shiftwidth = 2    -- Number of spaces for autoindent
+vim.opt.expandtab = true  -- Convert tabs to spaces
+vim.opt.wrap = false      -- Disable line wrapping
+vim.g.skip_ts_context_commentstring_module = true
 vim.g.pymode_indent = 0
 vim.g.python_recommended_style = 0
+-- transparent background
 vim.api.nvim_command 'autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE'
 vim.api.nvim_command 'autocmd ColorScheme * highlight NormalNC ctermbg=NONE guibg=NONE'
-vim.opt.complete:append { '.', 'w', 'b' }
 
 -- Style for hover things
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = 'rounded', -- Options: 'single', 'double', 'rounded', 'solid'
-  -- width = 60,
-  -- Other options: max_width, max_height, title
 })
 vim.diagnostic.config {
   float = {
     border = 'rounded',
-    -- width = 60,
   },
 }
 

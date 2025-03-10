@@ -1,5 +1,11 @@
 return { -- Collection of various small independent plugins/modules
   'echasnovski/mini.nvim',
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter',
+    { 'JoosepAlviste/nvim-ts-context-commentstring', opts = {
+      enable_autocmd = false,
+    } },
+  },
   config = function()
     -- Better Around/Inside textobjects
     --
@@ -15,6 +21,15 @@ return { -- Collection of various small independent plugins/modules
     -- - sd'   - [S]urround [D]elete [']quotes
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
+    -- require('mini.comment').setup {
+    --   -- these are the default options
+    --   options = {
+    --     custom_commentstring = function()
+    --       return require('ts_context_commentstring').calculate_commentstring() or vim.bo.commentstring
+    --     end,
+    --   },
+    -- }
+
     -- move items with Option+[hjkl]
     require('mini.move').setup {
       -- Module mappings. Use `''` (empty string) to disable one.

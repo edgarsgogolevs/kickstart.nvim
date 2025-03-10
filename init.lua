@@ -78,8 +78,8 @@ vim.opt.splitbelow = true
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.list = false
+-- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -177,7 +177,6 @@ require('lazy').setup({
   --
   -- Then, because we use the `opts` key (recommended), the configuration runs
   -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
-
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
@@ -254,7 +253,6 @@ require('lazy').setup({
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
-      -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
       { 'williamboman/mason.nvim', opts = {} },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
@@ -415,6 +413,32 @@ require('lazy').setup({
         -- clangd = {},
         gopls = {},
         pyright = {},
+        ts_ls = {
+          -- Initial options for the TypeScript language server
+          init_options = {
+            plugins = {
+              {
+                -- Name of the TypeScript plugin for Vue
+                name = '@vue/typescript-plugin',
+
+                -- Location of the Vue language server module (path defined in step 1)
+                location = require('mason-registry').get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server',
+
+                -- Specify the languages the plugin applies to (in this case, Vue files)
+                languages = { 'vue' },
+              },
+            },
+          },
+
+          -- Specify the file types that will trigger the TypeScript language server
+          filetypes = {
+            'typescript', -- TypeScript files (.ts)
+            'javascript', -- JavaScript files (.js)
+            'javascriptreact', -- React files with JavaScript (.jsx)
+            'typescriptreact', -- React files with TypeScript (.tsx)
+            'vue', -- Vue.js single-file components (.vue)
+          },
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
