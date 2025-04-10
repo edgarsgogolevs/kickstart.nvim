@@ -40,6 +40,7 @@ return { -- Autoformat
       typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
       vue = { 'ts_ls' },
       python = { 'yapf' },
+      -- python = { 'black' },
       go = { 'gofumpt' },
       templ = { 'templ' },
     },

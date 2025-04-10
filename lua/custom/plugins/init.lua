@@ -8,8 +8,10 @@ vim.opt.shiftwidth = 2    -- Number of spaces for autoindent
 vim.opt.expandtab = true  -- Convert tabs to spaces
 vim.opt.wrap = false      -- Disable line wrapping
 vim.g.skip_ts_context_commentstring_module = true
-vim.g.pymode_indent = 0
-vim.g.python_recommended_style = 0
+
+-- vim.g.pymode_indent = 0
+-- vim.g.python_recommended_style = 0
+
 -- transparent background
 vim.api.nvim_command 'autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE'
 vim.api.nvim_command 'autocmd ColorScheme * highlight NormalNC ctermbg=NONE guibg=NONE'
